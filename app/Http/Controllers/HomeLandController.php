@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\PropertyListingType;
 use App\Models\ContactAgent;
 use App\Models\Rating;
+use App\Models\Contact;
+use Illuminate\Support\Facades\Mail;
 use App\Mail\SendContactForm;
 
 class HomeLandController extends Controller
@@ -85,12 +87,20 @@ class HomeLandController extends Controller
     }
 
     public function contact_submit(Request $request){
+
         if ($request->isMethod("POST")){
+            echo "Contact Submitdsdfsfsdsd";
             $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
                 'subject' => 'required|string|max:255',
                 'message' => 'required|string|max:1000',
+            ],[
+                'name.required' => 'The name field is required.',
+                'email.required' => 'The email field is required.',
+                'email.email' => 'The email must be a valid email address.',
+                'subject.required' => 'The subject field is required.',
+                'message.required' => 'The message field is required.',
             ]);
 
             //guardar datos
@@ -105,7 +115,8 @@ class HomeLandController extends Controller
             Mail::to('lalo212003@gmail.com')->send(new SendContactForm($contact));
 
 
-            session()->now('message', 'Your message has been submitted successfully');
+            session()->flash('message', 'Your message has been submitted successfully.');
+            return view('homeland.contact');
         }
         return view('homeland.contact');
     }

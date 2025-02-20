@@ -5,33 +5,46 @@
         <div class="row">
 
             <div class="col-md-12 col-lg-8 mb-5">
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+                @endif
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-
-            <form action="{{ route('contact.submit') }}" class="p-5 bg-white border" method="POST">
+            <form action="{{ route('contact_submit') }}" class="p-5 bg-white border" method="POST">
                 @csrf
                 <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
                     <label class="font-weight-bold" for="name">Full Name</label>
-                    <input type="text" id="name" class="form-control" placeholder="Full Name">
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" value="{{ old('name') }}">
                 </div>
                 </div>
                 <div class="row form-group">
                 <div class="col-md-12">
                     <label class="font-weight-bold" for="email">Email</label>
-                    <input type="email" id="email" class="form-control" placeholder="Email Address">
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Email Address" value="{{ old('email') }}">
                 </div>
                 </div>
                 <div class="row form-group">
                 <div class="col-md-12">
                     <label class="font-weight-bold" for="subject">Subject</label>
-                    <input type="text" id="subject" class="form-control" placeholder="Enter Subject">
+                    <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter Subject" value="{{ old('subject') }}">
                 </div>
                 </div>
                 <div class="row form-group">
                 <div class="col-md-12">
                     <label class="font-weight-bold" for="message">Message</label>
-                    <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us"></textarea>
+                    <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Say hello to us">{{ old('message') }}</textarea>
                 </div>
                 </div>
 
@@ -40,8 +53,6 @@
                     <input type="submit" value="Send Message" class="btn btn-primary  py-2 px-4 rounded-0">
                 </div>
                 </div>
-
-
             </form>
             </div>
 

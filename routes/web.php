@@ -36,10 +36,10 @@ Route::get('/about',[HomeLandController::class, 'about'])->name('about');
 //Route::match(['get','post'],'/contact_submit',[HomelandController::class, 'contact_submit'])->name('contact_submit');
 
 
-Route::get('/contact',[HomeLandController::class, 'contact_submit'])->name('contact');
-Route::post('/contact', [HomeLandController::class, 'contact_submit'])->name('contact.submit');
+//Route::get('/contact',[HomeLandController::class, 'contact_submit'])->name('contact');
+//Route::post('/contact', [HomeLandController::class, 'contact_submit'])->name('contact_submit');
 
-
+Route::match(['get','post'],'/contact',[HomeLandController::class, 'contact_submit'])->name('contact_submit');
 
 Route::get('/login',[HomeLandController::class, 'login'])->name('login');
 Route::get('/register',[HomeLandController::class, 'register'])->name('register');
