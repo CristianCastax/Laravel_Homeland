@@ -26,11 +26,20 @@ Route::get('/hello/{name?}', function (string $name = 'pepee') {
 Route::get('/services', [SiteController::class, 'services']);
 //
 
-Route::get('/', [HomeLandController::class, 'index']);
-Route::get('/buy',[HomeLandController::class, 'buy']);
-Route::get('/rent',[HomeLandController::class, 'rent']);
-Route::get('/properties/{property_type_id}',[HomeLandController::class, 'properties']);
-Route::get('/about',[HomeLandController::class, 'about']);
-Route::get('/contact',[HomeLandController::class, 'contact']);
-Route::get('/login',[HomeLandController::class, 'login']);
-Route::get('/register',[HomeLandController::class, 'register']);
+Route::get('/', [HomeLandController::class, 'index'])->name('home'); //name('home') es un alias para la ruta, se usa para redireccionar a la ruta
+Route::match(['get','post'],'/property_details/{property_id}',[HomeLandController::class, 'property_details'])->name('property_details');
+Route::match(['get','post'],'/ratings/{property_id}',[HomeLandController::class, 'ratings'])->name('ratings');
+Route::get('/buy',[HomeLandController::class, 'buy'])->name('buy');
+Route::get('/rent',[HomeLandController::class, 'rent'])->name('rent');
+Route::get('/properties/{property_listing_type_id}',[HomeLandController::class, 'properties_listing_type'])->name('properties_listing_type');
+Route::get('/about',[HomeLandController::class, 'about'])->name('about');
+//Route::match(['get','post'],'/contact_submit',[HomelandController::class, 'contact_submit'])->name('contact_submit');
+
+
+Route::get('/contact',[HomeLandController::class, 'contact_submit'])->name('contact');
+Route::post('/contact', [HomeLandController::class, 'contact_submit'])->name('contact.submit');
+
+
+
+Route::get('/login',[HomeLandController::class, 'login'])->name('login');
+Route::get('/register',[HomeLandController::class, 'register'])->name('register');

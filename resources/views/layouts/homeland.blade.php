@@ -19,9 +19,15 @@
     <link rel="stylesheet" href="{{asset('fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('css/fl-bigmug-line.css')}}">
 
+    <link rel="stylesheet" href="{{asset('css/rating.css')}}">
+
+
 
     <link rel="stylesheet" href="{{asset('css/aos.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   </head>
   <body>
@@ -59,16 +65,15 @@
                   <li class="has-children">
                     <a href="properties.html">Properties</a>
                     <ul class="dropdown arrow-top">
-                      <li><a href="#">Condo</a></li>
-                      <li><a href="#">Property Land</a></li>
-                      <li><a href="#">Commercial Building</a></li>
-
+                      <li><a href="{{ route('properties_listing_type',1) }}">Condo</a></li>
+                      <li><a href="{{ route('properties_listing_type',2) }}">Commercial Building</a></li>
+                      <li><a href="{{ route('properties_listing_type',3) }}">Property Land</a></li>
                     </ul>
                   </li>
                   <li><a href="/about">About</a></li>
                   <li><a href="/contact">Contact</a></li>
-                  <li><a href="login.html">Login</a></li>
-                  <li><a href="register.html">Register</a></li>
+                  <li><a href="/login">Login</a></li>
+                  <li><a href="/register">Register</a></li>
                 </ul>
               </nav>
             </div>
@@ -177,6 +182,8 @@
     </footer>
 
   </div>
+  <script src="{{asset('js/rating.js')}}" ></script>
+
 
   <script src="{{asset('js/jquery-3.3.1.min.js')}}"></script>
   <script src="{{asset('js/jquery-migrate-3.0.1.min.js')}}"></script>
@@ -190,8 +197,9 @@
   <script src="{{asset('js/jquery.magnific-popup.min.js')}}"></script>
   <script src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
   <script src="{{asset('js/aos.js')}}"></script>
+  <script src="{{asset('js/circleaudioplayer.js')}}"></script>
 
-  <script src="js/main.js"></script>
+  <script src="{{asset('js/main.js')}}"></script>
 
   </body>
 </html>

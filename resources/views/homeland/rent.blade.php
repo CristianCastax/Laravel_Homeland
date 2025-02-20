@@ -83,323 +83,51 @@
     <div class="container">
 
       <div class="row mb-5">
+        @foreach ($properties as $prop)
+
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
+            <a href="{{ route('property_details', $prop->id) }}" class="property-thumbnail">
               <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
+                @if ($prop->offer_type == 'For Sale')
+                    <span class="offer-type bg-danger">Sale</span>
+                @elseif ($prop->offer_type == 'For Rent')
+                    <span class="offer-type bg-success">Rent</span>
+                @elseif($prop->offer_type == 'For Lease')
+                    <span class="offer-type bg-warning">Lease</span>
+                @endif
               </div>
-              <img src="images/img_1.jpg" alt="Image" class="img-fluid">
+              @foreach (json_decode($prop->images) as $img)
+                @if ($loop->first)
+                  <img src="{{asset('images/'.$img)}}" alt="Image" class="img-fluid">
+                  @break
+                @endif
+              @endforeach
             </a>
             <div class="p-4 property-body">
               <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
+              <h2 class="property-title"><a href="property-details.html">{{explode(',',$prop->address)[0]}}</a></h2>
+              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> {{$prop->address}}</span>
+              <strong class="property-price text-primary mb-3 d-block text-success">{{$prop->price}}</strong>
               <ul class="property-specs-wrap mb-3 mb-lg-0">
                 <li>
                   <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
+                  <span class="property-specs-number">{{$prop->bedrooms}}<sup>+</sup></span>
                 </li>
                 <li>
                   <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
+                  <span class="property-specs-number">{{$prop->bathrooms}}</span>
                 </li>
                 <li>
                   <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">7,000</span>
-
+                  <span class="property-specs-number">{{$prop->sq_ft}}</span>
                 </li>
               </ul>
-
             </div>
           </div>
         </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_2.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite active"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">1,620</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_3.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">5,500</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_4.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">7,000</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_5.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">1,620</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_6.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">5,500</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_7.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">625 S. Berendo St</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 625 S. Berendo St Unit 607 Los Angeles, CA 90005</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">7,000</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_8.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">871 Crenshaw Blvd</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 1 New York Ave, Warners Bay, NSW 2282</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">1,620</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
-              <div class="offer-type-wrap">
-                <span class="offer-type bg-success">Rent</span>
-              </div>
-              <img src="images/img_1.jpg" alt="Image" class="img-fluid">
-            </a>
-            <div class="p-4 property-body">
-              <a href="#" class="property-favorite"><span class="icon-heart-o"></span></a>
-              <h2 class="property-title"><a href="property-details.html">853 S Lucerne Blvd</a></h2>
-              <span class="property-location d-block mb-3"><span class="property-icon icon-room"></span> 853 S Lucerne Blvd Unit 101 Los Angeles, CA 90005</span>
-              <strong class="property-price text-primary mb-3 d-block text-success">$2,265,500</strong>
-              <ul class="property-specs-wrap mb-3 mb-lg-0">
-                <li>
-                  <span class="property-specs">Beds</span>
-                  <span class="property-specs-number">2 <sup>+</sup></span>
-
-                </li>
-                <li>
-                  <span class="property-specs">Baths</span>
-                  <span class="property-specs-number">2</span>
-
-                </li>
-                <li>
-                  <span class="property-specs">SQ FT</span>
-                  <span class="property-specs-number">5,500</span>
-
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
-
-
     </div>
   </div>
 

@@ -29,7 +29,7 @@ class PropertyFactory extends Factory
             'bathrooms' => fake()->randomNumber(1, true),
             //'price' => fake()->randomFloat(2, 10, 100),
             'price' => fake()->randomNumber(5, true),
-            'property_listing_types_id' => fake()->numberBetween(1, 3),
+            'property_listing_type' => fake()->numberBetween(1, 3),
             'offer_type' => fake()->randomElement(['For Sale', 'For Rent', 'For Lease']),
             'sq_ft' => fake()->randomNumber(3, true),
             'year_built' => fake()->year(),

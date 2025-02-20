@@ -8,12 +8,12 @@
 
 
 
-            <form action="#" class="p-5 bg-white border">
-
+            <form action="{{ route('contact.submit') }}" class="p-5 bg-white border" method="POST">
+                @csrf
                 <div class="row form-group">
                 <div class="col-md-12 mb-3 mb-md-0">
-                    <label class="font-weight-bold" for="fullname">Full Name</label>
-                    <input type="text" id="fullname" class="form-control" placeholder="Full Name">
+                    <label class="font-weight-bold" for="name">Full Name</label>
+                    <input type="text" id="name" class="form-control" placeholder="Full Name">
                 </div>
                 </div>
                 <div class="row form-group">
@@ -24,12 +24,10 @@
                 </div>
                 <div class="row form-group">
                 <div class="col-md-12">
-                    <label class="font-weight-bold" for="email">Subject</label>
+                    <label class="font-weight-bold" for="subject">Subject</label>
                     <input type="text" id="subject" class="form-control" placeholder="Enter Subject">
                 </div>
                 </div>
-
-
                 <div class="row form-group">
                 <div class="col-md-12">
                     <label class="font-weight-bold" for="message">Message</label>

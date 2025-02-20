@@ -87,14 +87,20 @@
 
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="property-entry h-100">
-            <a href="property-details.html" class="property-thumbnail">
+
+            <a href="{{ route('property_details', $prop->id) }}"  class="property-thumbnail"> <!--esto significa que: -->
               <div class="offer-type-wrap">
-                <span class="offer-type bg-danger">Sale</span>
-                <span class="offer-type bg-success">Rent</span>
+                @if ($prop->offer_type == 'For Sale')
+                    <span class="offer-type bg-danger">Sale</span>
+                @elseif ($prop->offer_type == 'For Rent')
+                    <span class="offer-type bg-success">Rent</span>
+                @elseif($prop->offer_type == 'For Lease')
+                    <span class="offer-type bg-warning">Lease</span>
+                @endif
               </div>
-              @foreach (json_decode($prop->$images) as $img)
-                @if ($loop -> first)
-                  <img src="{{asset('images')}}/{{$img}}" alt="Image" class="img-fluid">
+              @foreach (json_decode($prop->images) as $img)
+                @if ($loop->first)
+                  <img src="{{asset('images/'.$img)}}" alt="Image" class="img-fluid">
                   @break
                 @endif
               @endforeach
@@ -108,25 +114,21 @@
                 <li>
                   <span class="property-specs">Beds</span>
                   <span class="property-specs-number">{{$prop->bedrooms}}<sup>+</sup></span>
-
                 </li>
                 <li>
                   <span class="property-specs">Baths</span>
                   <span class="property-specs-number">{{$prop->bathrooms}}</span>
-
                 </li>
                 <li>
                   <span class="property-specs">SQ FT</span>
                   <span class="property-specs-number">{{$prop->sq_ft}}</span>
-
                 </li>
               </ul>
-
             </div>
           </div>
         </div>
         @endforeach
-
+      </div>
     </div>
   </div>
 
