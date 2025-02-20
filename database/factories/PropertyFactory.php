@@ -20,7 +20,7 @@ class PropertyFactory extends Factory
         $amount = rand(1,10);
 
         for($x = 0; $x < $amount; $x++ ){
-           $images[] = fake()->randomElement(['img_1.jpg', 'img_2.jpg', 'img_3.jpg', 'img_4.jpg', 'img_5.jpg', 'img_6.jpg' ]);
+           $images[] = fake()->randomElement(['img_1.jpg', 'img_2.jpg', 'img_3.jpg', 'img_4.jpg', 'img_5.jpg', 'img_6.jpg', 'img_7.jpg', 'img_8.jpg']);
         }
         return [
             'address' => fake()->streetAddress(),
