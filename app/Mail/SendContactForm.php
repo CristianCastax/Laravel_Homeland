@@ -22,7 +22,7 @@ class SendContactForm extends Mailable
         $this->contact = $contact;
     }
 
-    /**
+    /**-
      * Get the message envelope.
      */
     public function envelope(): Envelope
